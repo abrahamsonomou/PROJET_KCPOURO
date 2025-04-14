@@ -62,7 +62,7 @@ class aSettingsController extends Controller
                 if ($parametre->$field) {
                     Storage::disk('public')->delete($parametre->$field);
                 }
-                $fieldsToUpdate[$field] = $request->file($field)->store('images/settings', 'public');
+                $fieldsToUpdate[$field] = $request->file($field)->store('settings', 'public');
             }
         }
 

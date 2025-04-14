@@ -81,7 +81,7 @@ active
                                 <div class="d-flex align-items-center position-relative">
                                     <!-- Image -->
                                     <div class="avatar avatar-md">
-                                        <img src="{{ $user->avatar ? asset('storage/users/avatar/'. $user->avatar) : asset('assets/img/general/avatar-1.png') }}" alt="avatar" class="rounded-circle">
+                                        <img src="{{ asset('storage/' . $user->avatar) }}" alt="avatar" class="rounded-circle">
                                     </div>
                                     <div class="mb-0 ms-3">
                                         <!-- Title -->

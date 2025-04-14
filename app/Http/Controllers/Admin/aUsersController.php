@@ -55,14 +55,8 @@ class aUsersController extends Controller
             'approuve_cours' => 'in:0,1',
         ]);
         
-        // $user = new User($request->all());
-
         if ($request->hasFile('avatar')) {
-            $fileExtension = $request->file('avatar')->getClientOriginalExtension();
-            $fileName = pathinfo($request->file('avatar')->getClientOriginalName(), PATHINFO_FILENAME);
-            $fileName = $fileName.'_'.uniqid().'_'.time().'.'.$fileExtension;
-            $request->file('avatar')->storeAs('public/users/avatar', $fileName);
-            $validatedData['avatar'] = $fileName;
+            $validatedData['avatar'] = $request->file('avatar')->store('avatars', 'public');
         }
 
         $validatedData['password'] = Hash::make($request->password);
@@ -117,12 +111,10 @@ class aUsersController extends Controller
         $user = User::findOrFail($id);
 
         if ($request->hasFile('avatar')) {
-            $fileExtension = $request->file('avatar')->getClientOriginalExtension();
-            $fileName = pathinfo($request->file('avatar')->getClientOriginalName(), PATHINFO_FILENAME);
-            $fileName = $fileName.'_'.uniqid().'_'.time().'.'.$fileExtension;
-            $request->file('avatar')->storeAs('public/users/avatar', $fileName);
-            $validatedData['avatar'] = $fileName;
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $validatedData['avatar'] = $path; // Exemple : avatars/xyz.jpg
         }
+        
 
         // $validatedData['password'] = Hash::make($request->password);
 

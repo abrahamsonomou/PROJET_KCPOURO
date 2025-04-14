@@ -79,7 +79,7 @@ active
         <div class="mb-2 col-md-6 mt-3">
             <label>Current Avatar</label>
             <div>
-                <img src="{{ asset('storage/users/avatar/' . $user->avatar) }}" alt="User Avatar" class="img-thumbnail" width="150">
+                <img src="{{ asset('storage/' . $user->avatar) }}" alt="User Avatar" class="img-thumbnail" width="150">
             </div>
         </div>
         @endif
