@@ -350,6 +350,7 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+Route::get('/creer-lien-storage', [sSettingsController::class, 'createStorageLink']);
 
 // Appliquer le middleware check.locked à toutes les routes du groupe
 // Route::middleware(['auth', 'check.locked'])->group(function () {

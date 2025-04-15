@@ -112,7 +112,7 @@ active
                                 <label for="logo">Logo</label>
                                 <input type="file" name="logo" class="form-control @error('logo') is-invalid @enderror">
                                 @if($parametre->logo)
-                                    <img src="{{ asset('storage/' . $parametre->logo) }}" alt="Logo" height="50">
+                                    <img src="{{ asset($parametre->logo) }}" alt="Logo" height="50">
                                 @endif
                                 @error('logo') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>

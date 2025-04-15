@@ -136,7 +136,7 @@
 
 	<div class="d-flex align-items-center">
 		<a class="navbar-brand" href="{{ route('home') }}" target="_blank">
-			<img class="navbar-brand-item" src="{{ asset('storage/' .$parametre->logo ?? 'assets/img/general/logo.svg') }}" alt="">
+			<img class="navbar-brand-item" src="{{ asset($parametre->logo) }}" alt="">
 		</a>
 	</div>
 	
@@ -224,18 +224,7 @@
 
 				<div class="d-flex align-items-center d-xl-none">
 					<a class="navbar-brand" href="{{ route('home') }}" target="__blank">
-						@if(!empty($parametre->logo))
-					@if($parametre->logo && file_exists(public_path($parametre->logo)))
 						<img class="light-mode-item navbar-brand-item h-30px" src="{{ asset($parametre->logo) }}" alt="Logo">
-					@else
-						<img class="light-mode-item navbar-brand-item h-30px" src="{{ asset('images/default-logo.png') }}" alt="Logo">
-					@endif
-					
-						@else
-							<img class="light-mode-item navbar-brand-item h-30px" src="{{ asset('assets/img/general/logo.svg') }}" alt="Logo par défaut">
-							<img class="dark-mode-item navbar-brand-item h-30px" src="{{ asset('assets/img/general/logo.svg') }}" alt="Logo par défaut">
-						@endif
-					
 					</a>
 				</div>
 

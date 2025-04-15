@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Specialite;
 use App\Models\Pays;
 use App\Models\Ville;
+use Illuminate\Support\Facades\Artisan;
 
 class aSettingsController extends Controller
 {
@@ -59,12 +60,39 @@ class aSettingsController extends Controller
         $imageFields = ['logo', 'favicon', 'logo_footer', 'default_avatar_user', 'default_avatar_student', 'default_avatar_instructor'];
         foreach ($imageFields as $field) {
             if ($request->hasFile($field)) {
-                if ($parametre->$field) {
-                    Storage::disk('public')->delete($parametre->$field);
+                $file = $request->file($field);
+        
+                if (!$file->isValid()) {
+                    return response()->json([
+                        'error' => "Le fichier uploadé pour le champ $field est invalide."
+                    ], 422);
                 }
-                $fieldsToUpdate[$field] = $request->file($field)->store('settings', 'public');
+        
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . '_' . $field . '.' . $extension;
+        
+                // Définir le chemin relatif
+                $directory = 'settings/images/';
+                $path = public_path($directory);
+        
+                // Créer le dossier s'il n'existe pas
+                if (!file_exists($path)) {
+                    mkdir($path, 0755, true);
+                }
+        
+                // Supprimer l'ancien fichier s'il existe
+                if (!empty($parametre->$field) && file_exists(public_path($parametre->$field))) {
+                    unlink(public_path($parametre->$field));
+                }
+        
+                // Déplacer le nouveau fichier
+                $file->move($path, $filename);
+        
+                // Stocker le chemin relatif
+                $fieldsToUpdate[$field] = $directory . $filename;
             }
         }
+        
 
         $parametre->update($fieldsToUpdate);
 
@@ -73,5 +101,13 @@ class aSettingsController extends Controller
 
     return view($this::$TEMPLATE_VESION.'.admin.settings', compact('parametre','user','pays', 'villes', 'specialites'));
 }
+
+public function createStorageLink()
+{
+    Artisan::call('storage:link');
+
+    return response()->json(['message' => 'Lien symbolique créé avec succès.']);
+}
+
 
 }
