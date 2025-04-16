@@ -30,7 +30,7 @@ active
             
             @if($user->avatar)
                 <div class="text-center">
-                    <img src="{{ asset('storage/avatars/' . $user->avatar) }}" alt="User Avatar" class="img-fluid rounded" style="max-width: 150px;">
+                    <img src="{{ asset(user->avatar) }}" alt="User Avatar" class="img-fluid rounded" style="max-width: 150px;">
                 </div>
             @endif
         </div>

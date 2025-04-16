@@ -260,7 +260,7 @@
 					<ul class="navbar-nav flex-row align-items-center">
 						<li class="nav-item ms-2 ms-md-3 dropdown">
 							<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-								<img class="avatar-img rounded-circle shadow" src="{{ Auth::user()->avatar ? asset('storage/users/avatar/' . Auth::user()->avatar) : asset('assets/images/avatar.png') }}"
+								<img class="avatar-img rounded-circle shadow" src="{{ asset(Auth::user()->avatar) }}"
 								alt="avatar">
 							</a>
 
@@ -268,7 +268,7 @@
 								<li class="px-3">
 									<div class="d-flex align-items-center">
 										<div class="avatar me-3 mb-3">
-											<img class="avatar-img rounded-circle shadow" src="{{ Auth::user()->avatar ? asset('storage/users/avatar/' . Auth::user()->avatar) : asset('assets/images/avatar.png') }}"
+											<img class="avatar-img rounded-circle shadow" src="{{ asset(Auth::user()->avatar) }}"
                                             alt="avatar">
 										</div>
 										<div>

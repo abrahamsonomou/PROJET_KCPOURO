@@ -55,9 +55,39 @@ class aUsersController extends Controller
             'approuve_cours' => 'in:0,1',
         ]);
         
-        if ($request->hasFile('avatar')) {
-            $validatedData['avatar'] = $request->file('avatar')->store('avatars', 'public');
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+        
+            if (!$file->isValid()) {
+                return response()->json([
+                    'error' => 'Le fichier uploadé est invalide.'
+                ], 422);
+            }
+        
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+        
+            // Dossier de destination
+            $directory = 'users/';
+            $path = public_path($directory);
+        
+            // Créer le dossier s'il n'existe pas
+            if (!file_exists($path)) {
+                mkdir($path, 0755, true);
+            }
+        
+            // Supprimer l'ancienne image si existante (facultatif selon ton contexte)
+            if (!empty($data['image']) && file_exists(public_path($data['image']))) {
+                unlink(public_path($data['image']));
+            }
+        
+            // Déplacer le fichier
+            $file->move($path, $filename);
+        
+            // Enregistrer le chemin relatif
+            $data['image'] = $directory . $filename;
         }
+        
 
         $validatedData['password'] = Hash::make($request->password);
 
@@ -110,12 +140,40 @@ class aUsersController extends Controller
 
         $user = User::findOrFail($id);
 
-        if ($request->hasFile('avatar')) {
-            $path = $request->file('avatar')->store('avatars', 'public');
-            $validatedData['avatar'] = $path; // Exemple : avatars/xyz.jpg
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+        
+            if (!$file->isValid()) {
+                return response()->json([
+                    'error' => 'Le fichier uploadé est invalide.'
+                ], 422);
+            }
+        
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+        
+            // Dossier de destination
+            $directory = 'users/';
+            $path = public_path($directory);
+        
+            // Créer le dossier s'il n'existe pas
+            if (!file_exists($path)) {
+                mkdir($path, 0755, true);
+            }
+        
+            // Supprimer l'ancienne image si existante (facultatif selon ton contexte)
+            if (!empty($data['avatar']) && file_exists(public_path($data['avatar']))) {
+                unlink(public_path($data['avatar']));
+            }
+        
+            // Déplacer le fichier
+            $file->move($path, $filename);
+        
+            // Enregistrer le chemin relatif
+            $data['avatar'] = $directory . $filename;
         }
         
-
+        
         // $validatedData['password'] = Hash::make($request->password);
 
         $user->update($validatedData);
