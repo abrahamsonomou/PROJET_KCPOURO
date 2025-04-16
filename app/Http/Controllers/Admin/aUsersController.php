@@ -55,8 +55,8 @@ class aUsersController extends Controller
             'approuve_cours' => 'in:0,1',
         ]);
         
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
         
             if (!$file->isValid()) {
                 return response()->json([
@@ -76,16 +76,16 @@ class aUsersController extends Controller
                 mkdir($path, 0755, true);
             }
         
-            // Supprimer l'ancienne image si existante (facultatif selon ton contexte)
-            if (!empty($data['image']) && file_exists(public_path($data['image']))) {
-                unlink(public_path($data['image']));
+            // Supprimer l'ancienne avatar si existante (facultatif selon ton contexte)
+            if (!empty($data['avatar']) && file_exists(public_path($data['avatar']))) {
+                unlink(public_path($data['avatar']));
             }
         
             // Déplacer le fichier
             $file->move($path, $filename);
         
             // Enregistrer le chemin relatif
-            $data['image'] = $directory . $filename;
+            $data['avatar'] = $directory . $filename;
         }
         
 
@@ -140,8 +140,8 @@ class aUsersController extends Controller
 
         $user = User::findOrFail($id);
 
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
         
             if (!$file->isValid()) {
                 return response()->json([
