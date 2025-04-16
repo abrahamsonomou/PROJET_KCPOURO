@@ -13,8 +13,8 @@ class aVillesController extends Controller
 
     public function index()
     {
-        $villes = Ville::with('pays')->get();
-        return view(self::$TEMPLATE_VERSION.'.admin.villes.index', compact('villes'));
+        $villes = Ville::with('pays')->paginate(6);
+        return view(self::$TEMPLATE_VERSION.'.admin.villes.list', compact('villes'));
     }
 
     public function create()

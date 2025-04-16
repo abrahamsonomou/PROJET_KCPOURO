@@ -44,5 +44,17 @@ active
             @endforeach
         </tbody>
     </table>
+
+    <div class="card-footer bg-transparent pt-0">
+        <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
+            <p class="mb-0 text-center text-sm-start">Showing {{ $villes->firstItem() }} to {{ $villes->lastItem() }} of {{ $villes->total() }} entries</p>
+            <nav class="d-flex justify-content-center mb-0" aria-label="navigation">
+                <ul class="pagination pagination-sm pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
+                    {{ $villes->links('pagination::bootstrap-4') }}
+                </ul>
+            </nav>
+        </div>
+    </div>
+
 </div>
 @endsection

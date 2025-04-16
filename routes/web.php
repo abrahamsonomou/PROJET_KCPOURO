@@ -163,13 +163,13 @@ Route::middleware(['role:admin'])->prefix('admin')->name('admin.')->group(functi
 
 
         Route::prefix("villes")->name("villes.")->group(function (){
-            Route::get('/', [aVillesController::class, "villes_list"])->name('list');
-            Route::get('/create', [aVillesController::class, "villes_create"])->name('create');
-            Route::post('/', [aVillesController::class, "villes_store"])->name('store');
-            Route::get('edit/{id}', [aVillesController::class, "villes_edit"])->name('edit');
-            Route::get('{id}', [aVillesController::class, "villes_show"])->name('show');
-            Route::put('{id}', [aVillesController::class, "villes_update"])->name('update');
-            Route::delete('{id}', [aVillesController::class, "villes_destroy"])->name('destroy');
+            Route::get('/', [aVillesController::class, "index"])->name('list');
+            Route::get('/create', [aVillesController::class, "create"])->name('create');
+            Route::post('/', [aVillesController::class, "store"])->name('store');
+            Route::get('edit/{id}', [aVillesController::class, "edit"])->name('edit');
+            Route::get('{id}', [aVillesController::class, "show"])->name('show');
+            Route::put('{id}', [aVillesController::class, "update"])->name('update');
+            Route::delete('{id}', [aVillesController::class, "destroy"])->name('destroy');
             });
 
             Route::prefix("slides")->name("slides.")->group(function (){
