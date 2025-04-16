@@ -121,7 +121,7 @@ active
                                 <label for="favicon">Favicon</label>
                                 <input type="file" name="favicon" class="form-control @error('favicon') is-invalid @enderror">
                                 @if($parametre->favicon)
-                                    <img src="{{ asset('storage/' . $parametre->favicon) }}" alt="Favicon" height="20">
+                                    <img src="{{ asset($parametre->favicon) }}" alt="Favicon" height="20">
                                 @endif
                                 @error('favicon') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
@@ -130,7 +130,7 @@ active
                                 <label for="logo_footer">Footer Logo</label>
                                 <input type="file" name="logo_footer" class="form-control @error('logo_footer') is-invalid @enderror">
                                 @if($parametre->logo_footer)
-                                    <img src="{{ asset('storage/' . $parametre->logo_footer) }}" alt="Logo Footer" height="50">
+                                    <img src="{{ asset($parametre->logo_footer) }}" alt="Logo Footer" height="50">
                                 @endif
                                 @error('logo_footer') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
