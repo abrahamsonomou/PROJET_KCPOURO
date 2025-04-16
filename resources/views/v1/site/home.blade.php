@@ -76,7 +76,7 @@
               <div class="header__logo ">
                 <a data-barba href="{{ route('home') }}">
                   {{-- si c'est null --}}
-                  <img src="{{ asset('storage/' .$parametre->logo ?? 'assets/img/general/logo.svg') }}" alt="logo">
+                  <img src="{{ asset($parametre->logo) }}" alt="logo">
 
                 </a>
               </div>
@@ -114,21 +114,7 @@
                       <li> <a data-barba href="{{ route('cours') }}">Cours</a></li>
 
                       <li> <a data-barba href="{{ route('blog') }}">Blog</a></li>
-
-                      {{-- <li class="menu-item-has-children">
-                        <a data-barba href="#">Nos solutions<i class="icon-chevron-right text-13 ml-10"></i></a>
-                        <ul class="subnav">
-                          <li class="menu__backButton js-nav-list-back">
-                            <a href="#"><i class="icon-chevron-left text-13 mr-10"></i> Nos solutions</a>
-                          </li>
-
-                          <li><a href="">Solution 1</a></li>
-
-                          <li><a href="">Solution 2</a></li>
-
-                        </ul>
-                      </li> --}}
-
+      
                       <li class="menu-item-has-children">
                         <a data-barba href="#">Ressources<i class="icon-chevron-right text-13 ml-10"></i></a>
                         <ul class="subnav">
@@ -232,7 +218,7 @@
           
             <div class="swiper-slide">
               <div data-anim-child="fade" class="mainSlider__bg">
-                <div class="bg-image js-lazy" data-bg="{{ asset('storage/' . $slide->image) }}"></div>
+                <div class="bg-image js-lazy" data-bg="{{ asset($slide->image) }}"></div>
               </div>
             </div>
           @endforeach

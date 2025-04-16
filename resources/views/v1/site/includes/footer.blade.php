@@ -10,7 +10,7 @@
 
               <a data-barba href="{{ route('home') }}">
                 {{-- si c'est null --}}
-                <img src="{{ asset('storage/' .$parametre->logo_footer ?? 'assets/images/footer-logo.svg') }}" alt="logo">
+                <img src="{{ asset($parametre->logo_footer) }}" alt="logo">
 
               </a>
             </div>

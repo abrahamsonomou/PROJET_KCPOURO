@@ -75,7 +75,7 @@ active
                     <tr>
                         <td>{{ $slide->id }}</td>
                         <td>{{ $slide->titre }}</td>
-                        <td><img src="{{ asset('storage/' . $slide->image) }}" width="50"></td>
+                        <td><img src="{{ asset($slide->image) }}" width="50"></td>
                         <td>{{ $slide->ordre }}</td>
                         <td>{{ $slide->active ? 'Oui' : 'Non' }}</td>
                         <td>

@@ -39,8 +39,38 @@ class aSlidesController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('slides', 'public');
+            $file = $request->file('image');
+        
+            if (!$file->isValid()) {
+                return response()->json([
+                    'error' => 'Le fichier uploadé est invalide.'
+                ], 422);
+            }
+        
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+        
+            // Dossier de destination
+            $directory = 'slides/';
+            $path = public_path($directory);
+        
+            // Créer le dossier s'il n'existe pas
+            if (!file_exists($path)) {
+                mkdir($path, 0755, true);
+            }
+        
+            // Supprimer l'ancienne image si existante (facultatif selon ton contexte)
+            if (!empty($data['image']) && file_exists(public_path($data['image']))) {
+                unlink(public_path($data['image']));
+            }
+        
+            // Déplacer le fichier
+            $file->move($path, $filename);
+        
+            // Enregistrer le chemin relatif
+            $data['image'] = $directory . $filename;
         }
+        
 
         Slide::create($data);
 
@@ -69,11 +99,36 @@ class aSlidesController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            // Delete old image
-            if ($slide->image) {
-                Storage::disk('public')->delete($slide->image);
+            $file = $request->file('image');
+        
+            if (!$file->isValid()) {
+                return response()->json([
+                    'error' => 'Le fichier uploadé est invalide.'
+                ], 422);
             }
-            $data['image'] = $request->file('image')->store('slides', 'public');
+        
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+        
+            // Définir le dossier de destination
+            $directory = 'slides/';
+            $path = public_path($directory);
+        
+            // Créer le dossier s’il n’existe pas
+            if (!file_exists($path)) {
+                mkdir($path, 0755, true);
+            }
+        
+            // Supprimer l'ancienne image si elle existe
+            if (!empty($slide->image) && file_exists(public_path($slide->image))) {
+                unlink(public_path($slide->image));
+            }
+        
+            // Déplacer le fichier
+            $file->move($path, $filename);
+        
+            // Stocker le chemin relatif
+            $data['image'] = $directory . $filename;
         }
 
         $slide->update($data);

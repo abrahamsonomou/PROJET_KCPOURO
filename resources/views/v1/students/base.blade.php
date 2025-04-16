@@ -61,9 +61,7 @@
 
                                 <div class="header__logo ml-30 md:ml-20">
                                     <a data-barba href="{{ route('home') }}" target="__blank">
-                                        {{-- <img class="-light-d-none" src="{{ asset('assets/img/general/logo.svg') }}" alt="logo">
-                    <img class="-dark-d-none" src="{{ asset('assets/img/general/logo-dark.svg') }}" alt="logo"> --}}
-                                        <img src="{{ asset('storage/' . $parametre->logo ?? 'assets/img/general/logo.svg') }}"
+                                              <img src="{{ asset($parametre->logo) }}"
                                             alt="logo">
 
                                     </a>
@@ -158,7 +156,7 @@
 
                                     <a href="#" data-el-toggle=".js-profile-toggle">
                                         <img class="size-50 rounded-circle"
-                                            src="{{ $user && $user->avatar ? asset('storage/users/avatar/' . $user->avatar) : asset('assets/images/avatar.png') }}"
+                                            src="{{ asset($user->avatar) }}"
                                             alt="avatar">
                                     </a>
 

@@ -21,7 +21,7 @@ active
     <div class="mb-3">
         <strong>Image:</strong>
         @if ($slide->image)
-            <img src="{{ asset('storage/' . $slide->image) }}" width="200">
+            <img src="{{ asset($slide->image) }}" width="200">
         @else
             <p>Aucune image</p>
         @endif

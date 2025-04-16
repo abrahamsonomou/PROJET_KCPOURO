@@ -47,7 +47,7 @@
 
               <div class="header__logo ">
                 <a data-barba href="{{ route('home') }}">
-                  <img src="{{ asset('assets/images/general/logo.svg') }}" alt="logo">
+                  <img src="{{ asset($parametre->logo) }}" alt="logo">
                 </a>
               </div>
 
@@ -173,11 +173,6 @@
                 </div>
 
               </div>
-
-              {{-- <div class="header-right__buttons d-flex items-center ml-30 md:d-none">
-                <a href="{{ route('login') }}" class="button -underline text-white">Log in</a>
-                <a href="{{ route('register') }}" class="button -sm -white text-dark-1 ml-30">Sign Up</a>
-              </div> --}}
 
               <div class="header-right__buttons d-flex items-center ml-30 xl:ml-20 md:d-none">
                 @guest

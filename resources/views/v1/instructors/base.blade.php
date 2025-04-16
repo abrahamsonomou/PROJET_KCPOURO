@@ -67,11 +67,8 @@
 
                                 <div class="header__logo ml-30 md:ml-20">
                                     <a data-barba href="{{ route('home') }}">
-                                        {{-- <img class="-light-d-none" src="{{ asset('assets/img/general/logo.svg') }}" alt="logo">
-                    <img class="-dark-d-none" src="{{ asset('assets/img/general/logo-dark.svg') }}" alt="logo"> --}}
-                                        <img src="{{ asset('storage/' . $parametre->logo ?? 'assets/img/general/logo.svg') }}"
+                                        <img src="{{ asset($parametre->logo) }}"
                                             alt="logo">
-
                                     </a>
                                 </div>
                             </div>

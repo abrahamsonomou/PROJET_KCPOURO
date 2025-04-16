@@ -28,7 +28,7 @@ active
             <label class="form-label">Image</label>
             <input type="file" name="image" class="form-control">
             @if ($slide->image)
-                <img src="{{ asset('storage/' . $slide->image) }}" width="100" class="mt-2">
+                <img src="{{ asset($slide->image) }}" width="100" class="mt-2">
             @endif
         </div>
 
