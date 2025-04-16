@@ -58,7 +58,7 @@ active
                     <tr>
                         <td>{{ $service->id }}</td>
                         <td>{{ $service->titre }}</td>
-                        <td><img src="{{ asset('storage/' . $service->image) }}" width="50"></td>
+                        <td><img src="{{ asset($service->image) }}" width="50"></td>
                         <td>{{ $service->ordre }}</td>
                         <td>
                             @if ($service->active == 0)

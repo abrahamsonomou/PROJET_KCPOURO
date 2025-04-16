@@ -21,7 +21,7 @@ active
     <div class="mb-3">
         <strong>Image:</strong>
         @if ($service->image)
-            <img src="{{ asset('storage/' . $service->image) }}" width="200">
+            <img src="{{ asset($service->image) }}" width="200">
         @else
             <p>Aucune image</p>
         @endif

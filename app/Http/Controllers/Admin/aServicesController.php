@@ -39,9 +39,38 @@ class aServicesController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('services', 'public');
+            $file = $request->file('image');
+        
+            if (!$file->isValid()) {
+                return response()->json([
+                    'error' => 'Le fichier uploadé est invalide.'
+                ], 422);
+            }
+        
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+        
+            // Dossier de destination
+            $directory = 'services/';
+            $path = public_path($directory);
+        
+            // Créer le dossier s'il n'existe pas
+            if (!file_exists($path)) {
+                mkdir($path, 0755, true);
+            }
+        
+            // Supprimer l'ancienne image si existante (facultatif selon ton contexte)
+            if (!empty($data['image']) && file_exists(public_path($data['image']))) {
+                unlink(public_path($data['image']));
+            }
+        
+            // Déplacer le fichier
+            $file->move($path, $filename);
+        
+            // Enregistrer le chemin relatif
+            $data['image'] = $directory . $filename;
         }
-
+        
         Service::create($data);
 
         return redirect()->route('admin.services.list')->with('success', 'prerequi created successfully');
@@ -69,11 +98,36 @@ class aServicesController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            // Delete old image
-            if ($service->image) {
-                Storage::disk('public')->delete($service->image);
+            $file = $request->file('image');
+        
+            if (!$file->isValid()) {
+                return response()->json([
+                    'error' => 'Le fichier uploadé est invalide.'
+                ], 422);
             }
-            $data['image'] = $request->file('image')->store('services', 'public');
+        
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+        
+            // Dossier de destination
+            $directory = 'services/';
+            $path = public_path($directory);
+        
+            // Créer le dossier s'il n'existe pas
+            if (!file_exists($path)) {
+                mkdir($path, 0755, true);
+            }
+        
+            // Supprimer l'ancienne image si existante (facultatif selon ton contexte)
+            if (!empty($data['image']) && file_exists(public_path($data['image']))) {
+                unlink(public_path($data['image']));
+            }
+        
+            // Déplacer le fichier
+            $file->move($path, $filename);
+        
+            // Enregistrer le chemin relatif
+            $data['image'] = $directory . $filename;
         }
 
         $service->update($data);
