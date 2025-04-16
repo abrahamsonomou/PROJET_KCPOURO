@@ -22,6 +22,14 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(UserSeeder::class);
         $this->call(IconesSeeder::class);
+        $this->call(PaysSeeder::class);
+        $this->call(VillesGuineeSeeder::class);
+        $this->call(LanguesSeeder::class);
+        $this->call(DevisesSeeder::class);
+        $this->call(NiveauxSeeder::class);
+        $this->call(CategoriesSeeder::class);
+        $this->call(TagsSeeder::class);
+        $this->call(SpecialitesSeeder::class);
 
     }
 }

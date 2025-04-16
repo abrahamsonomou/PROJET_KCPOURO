@@ -104,7 +104,7 @@ active
                                 <td>
                                     <div class="d-flex align-items-center position-relative">
                                         <div class="w-60px">
-                                            <img src="{{ asset('storage/' . $course->image) }}" class="rounded" alt="">
+                                            <img src="{{ asset($course->image) }}" class="rounded" alt="">
                                         </div>
                                         <h6 class="table-responsive-title mb-0 ms-2">    
                                             <a href="#" class="stretched-link">{{ $course->titre }}</a>
@@ -114,7 +114,7 @@ active
                                 <td>
                                     <div class="d-flex align-items-center mb-3">
                                         <div class="avatar avatar-xs flex-shrink-0">
-                                            <img class="avatar-img rounded-circle" src="{{ $course->user->avatar ? asset('storage/users/avatar/' . $course->user->avatar) : asset('assets/img/general/avatar-1.png') }}" alt="avatar">
+                                            <img class="avatar-img rounded-circle" src="{{ asset($course->user->avatar) }}" alt="avatar">
                                         </div>
                                         <div class="ms-2">
                                             <h6 class="mb-0 fw-light">{{ $course->user->first_name ?? 'Instructor' }} {{ $course->user->last_name ?? '' }}</h6>

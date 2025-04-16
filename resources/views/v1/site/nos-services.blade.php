@@ -49,7 +49,7 @@
             <div data-anim-child="slide-up delay-1" class="col-lg-3 col-md-6">
             <div class="coursesCard -type-2 text-center pt-50 pb-40 px-30 rounded-8 bg-white shadow-2">
                 <div class="coursesCard__image">
-                <img src="{{ asset('storage/' . $service->image) }}" alt="image">
+                <img src="{{ asset($service->image) }}" alt="image">
                 </div>
                 <div class="coursesCard__content mt-30">
                 <h5 class="coursesCard__title text-18 lh-1 fw-500">{{ $service->titre }}</h5>

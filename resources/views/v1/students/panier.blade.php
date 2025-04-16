@@ -28,7 +28,7 @@
                 <div class="row x-gap-20 y-gap-20 items-center">
                   <div class="col-md-auto">
                     <div class="shrink-0">
-                      <img class="w-1/1" src="{{ asset('storage/' . $enroulement->cours->image) }}" alt="image">
+                      <img class="w-1/1" src="{{ asset($enroulement->cours->image) }}" alt="image">
                     </div>
                   </div>
 
@@ -78,7 +78,7 @@
 
                     <div class="d-flex y-gap-10 justify-between items-center flex-wrap border-top-light pt-10 mt-10">
                       <div class="d-flex items-center">
-                        <img  src="{{ $enroulement->user->avatar ? asset('storage/users/avatar/' . $enroulement->user->avatar) : asset('assets/img/general/avatar-1.png') }}" alt="image">
+                        <img  src="{{ asset($enroulement->user->avatar) }}" alt="image">
                         <div class="text-14 lh-1 ml-10">{{ $enroulement->user->first_name ?? '' }} {{ $enroulement->user->last_name ?? '' }}</div>
                       </div>
 

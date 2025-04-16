@@ -155,7 +155,7 @@
                             <label for="image">Course Image</label>
                             <input type="file" name="image" id="image" class="form-control">
                             @if($cours->image)
-                                <img src="{{ asset('storage/' . $cours->image) }}" alt="Course Image" class="mt-2" width="100">
+                                <img src="{{ asset($cours->image) }}" alt="Course Image" class="mt-2" width="100">
                             @endif
                         </div>
 
